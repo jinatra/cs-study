@@ -1,0 +1,21 @@
+# 싱글톤 패턴: 클래스에서 인스턴스를 딱 하나만 만들도록 제한하는 패턴
+
+class Singleton:
+    # 클래스 변수: 만들어진 인스턴스를 여기에 저장해둔다
+    # None = 아직 아무것도 안 만들었다는 뜻
+    _instance = None # 클래스 변수 선언
+
+    # __new__: 객체를 메모리에 생성하는 단계
+    # 파이썬 기본 동작을 덮어써서(오버라이드) 생성을 제어한다
+    def __new__(cls):
+        # 아직 객체가 없으면 → 새로 만들어서 저장
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)  # 원래 방식대로 객체 하나 생성
+        # 이미 있으면 → 기존 것을 그대로 돌려줌
+        return cls._instance
+
+
+# --- 확인용 테스트 ---
+a = Singleton()
+b = Singleton()
+print(a is b)  # True → 둘 다 같은 객체
