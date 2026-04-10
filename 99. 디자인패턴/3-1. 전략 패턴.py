@@ -11,6 +11,8 @@ class KakaoPayment:
 
 # --- 컨텍스트 (전략을 갈아끼우는 곳) ---
 class PaymentService:
+    # __init__: __new__로 메모리에 생성된 객체에 속성(프로퍼티)을 세팅하는 함수
+    # 여기서 strategy 속성을 주입받아서, 이후 checkout 등에서 사용할 수 있게 됨
     def __init__(self, strategy):
         self.strategy = strategy  # 메모리에 할당된 객체에 전달받은 strategy를 초기값으로 세팅
 

@@ -1,12 +1,13 @@
 # 싱글톤 패턴
-# 하나의 클래스에 하나의 인스턴스만 존재
+# 하나의 클래스가 하나의 인스턴스만을 가짐
+# 객체를 여러개 만들면 자원 낭비가 되는 경우(DB 커넥션 등)에 용이
 
-class Singleton:
-    # 클래스 변수: 만들어진 인스턴스를 저장
+class Singleton():
+    # 클래스 변수: 만들어진 인스턴스를 여기에 저장
     _instance = None
     
-    # 객체를 메모리에 생성하는 단계
-    # 싱글톤 패턴을 위해 기존 __new__ 함수를 오버라이드
+    # 객체가 메모리에 할당될 때 사용되는 __new__ 함수를 오버라이드
+    # (클래스가 호출될때마다 새 객체가 부여되기 때문)
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
@@ -14,5 +15,4 @@ class Singleton:
 
 a = Singleton()
 b = Singleton()
-
 print(a is b)
